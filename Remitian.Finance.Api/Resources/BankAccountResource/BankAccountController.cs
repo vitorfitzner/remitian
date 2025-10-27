@@ -28,10 +28,6 @@ namespace Remitian.Finance.Api.Resources.BankAccountResource
         {
             var bankAccounts = await _service.GetBankAccountsAsync(filter);
 
-            await _hub.Clients.All.SendAsync("ReceiveMessage", 1, 100);
-            
-            await _hub.Clients.All.SendAsync("ReceiveNotification", "notification.Title", "notification.Message");
-
             return Ok(bankAccounts);
         }
 
