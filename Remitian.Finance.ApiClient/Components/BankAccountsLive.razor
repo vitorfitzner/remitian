@@ -1,0 +1,59 @@
+@page "/live-bankaccounts"
+@using Remitian.Finance.ApiClient.Services
+@inject RealtimeClient Realtime
+@inject HttpClient Http
+
+<h3>Live Bank Accounts</h3>
+
+@if (_accounts is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Balance (cents)</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var a in _accounts)
+        {
+            <tr>
+                <td>@a.Name</td>
+                <td>@a.BalanceCents</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<BankAccountDto>? _accounts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _accounts = await Http.GetFromJsonAsync<List<BankAccountDto>>("http://localhost:5000/bankaccounts");
+
+        Realtime.OnBankAccountUpdated((id, balance) =>
+        {
+            var target = _accounts?.FirstOrDefault(a => a.Id == id);
+            if (target is not null)
+            {
+                target.BalanceCents = balance;
+                InvokeAsync(StateHasChanged);
+            }
+        });
+
+        await Realtime.StartAsync();
+    }
+
+    public class BankAccountDto
+    {
+        public int Id { get; set; }          // Ensure backend includes Id if needed
+        public string Name { get; set; } = "";
+        public int BalanceCents { get; set; }
+    }
+}

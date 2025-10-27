@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./Remitian.Finance.Api
+      dockerfile: Dockerfile
+    container_name: remitian-backend
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+
+  frontend:
+    build:
+      context: ./Remitian.Finance.ApiClient
+      dockerfile: Dockerfile
+    container_name: remitian-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+    depends_on:
+      - backend
+
+networks:
+  default:
+    driver: bridge

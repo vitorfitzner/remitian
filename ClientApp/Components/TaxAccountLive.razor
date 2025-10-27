@@ -1,0 +1,12 @@
+@inject RealtimeClient Realtime
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        Realtime.OnTaxAccountUpdated((id, balance) =>
+        {
+            // Update UI state
+            InvokeAsync(StateHasChanged);
+        });
+        await Realtime.StartAsync();
+    }
+}

@@ -3,9 +3,50 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36327.8 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remitian.Finance.Api", "Remitian.Finance.Api\Remitian.Finance.Api.csproj", "{05DC8B84-77A8-48BD-8566-C063E4E33DB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remitian.Finance.Domain", "Remitian.Finance.Domain\Remitian.Finance.Domain.csproj", "{128DB551-D51E-464F-B171-C0A634410916}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remitian.Finance.ApiClient", "Remitian.Finance.ApiClient\Remitian.Finance.ApiClient.csproj", "{AAED23DC-52FC-474C-919D-5B04D3C2CE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remitian.Finance.Infra", "Remitian.Finance.Infra\Remitian.Finance.Infra.csproj", "{C949BC5D-CCE6-47D9-B94E-1EAE335352EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remitian.Finance.Domain.Tests", "Remitian.Finance.Domain.Tests\Remitian.Finance.Domain.Tests.csproj", "{908E5F5C-D703-4129-B94E-C7DB695F7283}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05DC8B84-77A8-48BD-8566-C063E4E33DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DC8B84-77A8-48BD-8566-C063E4E33DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DC8B84-77A8-48BD-8566-C063E4E33DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DC8B84-77A8-48BD-8566-C063E4E33DB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{128DB551-D51E-464F-B171-C0A634410916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{128DB551-D51E-464F-B171-C0A634410916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{128DB551-D51E-464F-B171-C0A634410916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{128DB551-D51E-464F-B171-C0A634410916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAED23DC-52FC-474C-919D-5B04D3C2CE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAED23DC-52FC-474C-919D-5B04D3C2CE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAED23DC-52FC-474C-919D-5B04D3C2CE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAED23DC-52FC-474C-919D-5B04D3C2CE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C949BC5D-CCE6-47D9-B94E-1EAE335352EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C949BC5D-CCE6-47D9-B94E-1EAE335352EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C949BC5D-CCE6-47D9-B94E-1EAE335352EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C949BC5D-CCE6-47D9-B94E-1EAE335352EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{908E5F5C-D703-4129-B94E-C7DB695F7283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908E5F5C-D703-4129-B94E-C7DB695F7283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908E5F5C-D703-4129-B94E-C7DB695F7283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908E5F5C-D703-4129-B94E-C7DB695F7283}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{908E5F5C-D703-4129-B94E-C7DB695F7283} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D626A76E-90CA-4471-B143-C9CE52153DFE}
