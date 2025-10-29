@@ -1,6 +1,4 @@
 ﻿using Remitian.Finance.Domain.AccountAgg;
-using Remitian.Finance.Domain.TaxAccountAgg;
-
 namespace Remitian.Finance.Infra.Database.Repositories
 {
     public interface IBankAccountRepository
