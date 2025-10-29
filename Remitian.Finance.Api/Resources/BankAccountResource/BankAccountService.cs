@@ -13,6 +13,7 @@ namespace Remitian.Finance.Api.Resources.BankAccountResource
         BankAccountRepository repository,
         IHubContext<NotificationsHub> hubContext)
     {
+
         #region dependencies
         private readonly BankAccountRepository _repository = repository;
         private readonly IHubContext<NotificationsHub> _hub = hubContext;
@@ -36,11 +37,17 @@ namespace Remitian.Finance.Api.Resources.BankAccountResource
             bankAccount.Deposit(amountCents);
 
             await _repository.UpdateBankAccountAsync(bankAccount);
+        }
 
-            await _hub.Clients.All.SendAsync(
-                "BroadcastBankAccountUpdate",
-                bankAccountId,
-                bankAccount.BalanceCents);
+        public async Task TransferTo(int bankAccountId, int taxAccountId, int amountCents)
+        {
+            var bankAccount = await _repository.GetBankAccountAsync(bankAccountId);
+            var taxAccount = await _repository.GetTaxAccountAsync(taxAccountId);
+
+            bankAccount.TransferTo(taxAccount, amountCents);
+
+            await _repository.UpdateBankAccountAsync(bankAccount);
+            await _hub.Clients.All.SendAsync("ReceiveMessage", taxAccount.Events);
         }
 
         public class BankAccountDto

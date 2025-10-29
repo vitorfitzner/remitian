@@ -1,4 +1,6 @@
-﻿namespace Remitian.Finance.Domain.AccountAgg
+﻿using Remitian.Finance.Domain.TaxAccountAgg;
+
+namespace Remitian.Finance.Domain.AccountAgg
 {
     public class BankAccount
     {
@@ -44,6 +46,16 @@
             Withdraw(amountCents);
 
             targetAccount.Deposit(amountCents);
+        }
+
+        #endregion
+
+        #region tax account transfer
+
+        public void TransferTo(TaxAccount taxAccount, int amountCents)
+        {
+            Withdraw(amountCents);
+            taxAccount.ReceiveTransfer(bankAccountOriginId: Id, amountCents);
         }
 
         #endregion

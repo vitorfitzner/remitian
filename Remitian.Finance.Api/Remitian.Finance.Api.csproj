@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Remitian.Finance.Infra\Remitian.Finance.Infra.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Hubs\" />
-  </ItemGroup>
-
 </Project>
