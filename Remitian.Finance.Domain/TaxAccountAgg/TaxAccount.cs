@@ -16,7 +16,7 @@ namespace Remitian.Finance.Domain.TaxAccountAgg
         {
             if (amountCents <= 0)
             {
-                throw new ArgumentException("Payment amount must be positive", nameof(amountCents));
+                throw new ArgumentException("Transfer amount must be positive", nameof(amountCents));
             }
 
             var transaction = new Transaction(bankAccountOriginId, accountDestinationId: Id, TransactionType.TaxPayment, amountCents);
