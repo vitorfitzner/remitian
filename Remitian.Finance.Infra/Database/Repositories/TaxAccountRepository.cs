@@ -24,7 +24,7 @@ namespace Remitian.Finance.Infra.Database.Repositories
 
         public async Task Save(TaxAccount taxAccount)
         {
-            await _db.TaxAccounts.AddAsync(taxAccount);
+            _db.TaxAccounts.Update(taxAccount);
             await _db.SaveChangesAsync();
         }
     }
