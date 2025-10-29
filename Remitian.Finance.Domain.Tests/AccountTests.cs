@@ -25,8 +25,10 @@ namespace Remitian.Finance.Domain.Tests
         {
             var account = new BankAccount { Name = "A" };
 
-            Assert.Throws<ArgumentException>(() => account.Deposit(0));
-            Assert.Throws<ArgumentException>(() => account.Deposit(-10));
+            var exAmountZero = Assert.Throws<ArgumentException>(() => account.Deposit(0));
+            var exNegativeAmount = Assert.Throws<ArgumentException>(() => account.Deposit(-10));
+            Assert.Equal("Deposit amount must be positive. (Parameter 'amountCents')", exAmountZero.Message);
+            Assert.Equal("Deposit amount must be positive. (Parameter 'amountCents')", exNegativeAmount.Message);
         }
 
         [Fact]
@@ -50,7 +52,9 @@ namespace Remitian.Finance.Domain.Tests
             var account = new BankAccount { Name = "A" };
             account.Deposit(20_00);
 
-            Assert.Throws<InvalidOperationException>(() => account.Withdraw(30_00));
+            var ex = Assert.Throws<InvalidOperationException>(() => account.Withdraw(30_00));
+
+            Assert.Equal("Insufficient funds for withdrawal.", ex.Message);
         }
 
         [Fact]
@@ -59,8 +63,11 @@ namespace Remitian.Finance.Domain.Tests
             var account = new BankAccount { Name = "A" };
             account.Deposit(20_00);
 
-            Assert.Throws<ArgumentException>(() => account.Withdraw(0));
-            Assert.Throws<ArgumentException>(() => account.Withdraw(-5));
+            var exAmountZero = Assert.Throws<ArgumentException>(() => account.Withdraw(0));
+            var exNegativeAmount = Assert.Throws<ArgumentException>(() => account.Withdraw(-5));
+
+            Assert.Equal("Withdrawal amount must be positive. (Parameter 'amountCents')", exAmountZero.Message);
+            Assert.Equal("Withdrawal amount must be positive. (Parameter 'amountCents')", exNegativeAmount.Message);
         }
 
         [Fact]
@@ -96,12 +103,13 @@ namespace Remitian.Finance.Domain.Tests
             source.Deposit(5_00);
             var target = new BankAccount { Name = "Target" };
 
-            Assert.Throws<InvalidOperationException>(() => source.TransferTo(target, 10_00));
+            var ex = Assert.Throws<InvalidOperationException>(() => source.TransferTo(target, 10_00));
 
             Assert.Equal(5_00, source.BalanceCents);
             Assert.Equal(0, target.BalanceCents);
             Assert.Single(source.Transactions);
             Assert.Empty(target.Transactions);
+            Assert.Equal("Insufficient funds for transfer.", ex.Message);
         }
 
         [Fact]
@@ -146,11 +154,12 @@ namespace Remitian.Finance.Domain.Tests
 
             var tax = new TaxAccount { Name = "IRS", Id = 99 };
 
-            Assert.Throws<InvalidOperationException>(() => bank.TransferTo(tax, 20_00));
+            var ex = Assert.Throws<InvalidOperationException>(() => bank.TransferTo(tax, 20_00));
 
             Assert.Equal(10_00, bank.BalanceCents);
             Assert.Empty(tax.Transactions);
             Assert.Empty(tax.Events);
+            Assert.Equal("Insufficient funds for transfer.", ex.Message);
         }
     }
 }
