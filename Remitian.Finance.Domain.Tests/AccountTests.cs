@@ -25,9 +25,9 @@ namespace Remitian.Finance.Domain.Tests
         {
             var account = new BankAccount { Name = "A" };
 
-            var exAmountZero = Assert.Throws<ArgumentException>(() => account.Deposit(0));
+            var exZeroAmount = Assert.Throws<ArgumentException>(() => account.Deposit(0));
             var exNegativeAmount = Assert.Throws<ArgumentException>(() => account.Deposit(-10));
-            Assert.Equal("Deposit amount must be positive. (Parameter 'amountCents')", exAmountZero.Message);
+            Assert.Equal("Deposit amount must be positive. (Parameter 'amountCents')", exZeroAmount.Message);
             Assert.Equal("Deposit amount must be positive. (Parameter 'amountCents')", exNegativeAmount.Message);
         }
 
@@ -63,10 +63,10 @@ namespace Remitian.Finance.Domain.Tests
             var account = new BankAccount { Name = "A" };
             account.Deposit(20_00);
 
-            var exAmountZero = Assert.Throws<ArgumentException>(() => account.Withdraw(0));
+            var exZeroAmount = Assert.Throws<ArgumentException>(() => account.Withdraw(0));
             var exNegativeAmount = Assert.Throws<ArgumentException>(() => account.Withdraw(-5));
 
-            Assert.Equal("Withdrawal amount must be positive. (Parameter 'amountCents')", exAmountZero.Message);
+            Assert.Equal("Withdrawal amount must be positive. (Parameter 'amountCents')", exZeroAmount.Message);
             Assert.Equal("Withdrawal amount must be positive. (Parameter 'amountCents')", exNegativeAmount.Message);
         }
 

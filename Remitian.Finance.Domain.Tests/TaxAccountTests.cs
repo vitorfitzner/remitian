@@ -35,11 +35,14 @@ namespace Remitian.Finance.Domain.Tests
         {
             var tax = new TaxAccount { Id = 5, Name = "Gov" };
 
-            Assert.Throws<ArgumentException>(() => tax.ReceiveTransfer(3, 0));
-            Assert.Throws<ArgumentException>(() => tax.ReceiveTransfer(3, -10));
+            var exPositiveAmountA = Assert.Throws<ArgumentException>(() => tax.ReceiveTransfer(3, 0));
+            var exPositiveAmountB = Assert.Throws<ArgumentException>(() => tax.ReceiveTransfer(3, -10));
 
             Assert.Empty(tax.Transactions);
             Assert.Empty(tax.Events);
+
+            Assert.Equal("Transfer amount must be positive. (Parameter 'amountCents')", exPositiveAmountA.Message);
+            Assert.Equal("Transfer amount must be positive. (Parameter 'amountCents')", exPositiveAmountB.Message);
         }
     }
 }
