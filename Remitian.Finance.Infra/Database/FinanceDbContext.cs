@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Remitian.Finance.Domain.AccountAgg;
+using Remitian.Finance.Domain.TaxAccountAgg;
 using Remitian.Finance.Infra.Database.Mappings;
 
 namespace Remitian.Finance.Infra.Database
@@ -8,6 +9,7 @@ namespace Remitian.Finance.Infra.Database
     public class FinanceDbContext : DbContext
     {
         public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<TaxAccount> TaxAccounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
         public FinanceDbContext(DbContextOptions<FinanceDbContext> options)

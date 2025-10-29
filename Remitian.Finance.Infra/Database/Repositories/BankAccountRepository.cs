@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Remitian.Finance.Domain.AccountAgg;
+using Remitian.Finance.Domain.TaxAccountAgg;
 
 namespace Remitian.Finance.Infra.Database.Repositories
 {
-    public class BankAccountRepository(FinanceDbContext db)
+    public class BankAccountRepository(FinanceDbContext db) : IBankAccountRepository
     {
         private readonly FinanceDbContext _db = db;
 
