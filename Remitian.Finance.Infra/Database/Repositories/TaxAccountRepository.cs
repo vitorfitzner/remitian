@@ -16,7 +16,7 @@ namespace Remitian.Finance.Infra.Database.Repositories
 
             if (account is null)
             {
-                throw new KeyNotFoundException($"Bank account with ID {taxAccountId} not found.");
+                throw new KeyNotFoundException($"Tax account with ID {taxAccountId} not found.");
             }
 
             return account;
