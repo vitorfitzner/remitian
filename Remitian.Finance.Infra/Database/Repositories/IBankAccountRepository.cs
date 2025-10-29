@@ -7,7 +7,6 @@ namespace Remitian.Finance.Infra.Database.Repositories
     {
         Task<BankAccount> GetBankAccountAsync(int bankAccountId);
         Task<IEnumerable<BankAccount>> GetBankAccountsAsync(CancellationToken cancellationToken = default);
-        Task<TaxAccount> GetTaxAccountAsync(int taxAccountId);
         Task UpdateBankAccountAsync(BankAccount bankAccount);
     }
 }
